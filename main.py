@@ -66,3 +66,12 @@ def convolutional_model():
 
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     return model
+
+"""**EARLY STOPPING**"""
+
+callback = tf.keras.callbacks.EarlyStopping(monitor='loss', patience=3)
+
+model = convolutional_model()
+
+# Train your model (this can take up to 5 minutes)
+history = model.fit(training_images, training_labels, epochs=10,callbacks=[callback])
